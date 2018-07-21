@@ -15,7 +15,7 @@ jobs:
              -o -z "$AWS_SECRET_ACCESS_KEY" \
              -o -z "$SLACK_API_TOKEN" \
              -o -z "$SLACK_CONVERSATION_ID" ]; then
-           exit 0
+          exit 0
         fi
         npm install
         npm install -g serverless@1.28.0
