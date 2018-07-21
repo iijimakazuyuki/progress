@@ -18,3 +18,8 @@ jobs:
         - node_modules/
         - /usr/local/lib/node_modules/
         key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+workflows:
+  version: 2
+  deploy:
+    jobs:
+    - deploy
