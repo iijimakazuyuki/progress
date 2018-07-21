@@ -1,0 +1,15 @@
+variables:
+  functionName: progress
+
+deploy:
+  image: node:10.7.0
+  script:
+  - npm install
+  - npm install -g serverless@1.28.0
+  - serverless deploy
+  only:
+    variables:
+    - $AWS_ACCESS_KEY_ID
+    - $AWS_SECRET_ACCESS_KEY
+    - $SLACK_API_TOKEN
+    - $SLACK_CONVERSATION_ID

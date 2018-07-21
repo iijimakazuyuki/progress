@@ -1,0 +1,14 @@
+{
+  "name": "progress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kazuyuki Iijima",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/client": "^4.3.1"
+  }
+}
