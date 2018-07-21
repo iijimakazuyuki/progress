@@ -1,6 +1,11 @@
 variables:
   functionName: progress
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - node_modules/
+
 deploy:
   image: node:10.6.0
   script:
