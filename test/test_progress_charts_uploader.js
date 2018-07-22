@@ -1,12 +1,12 @@
 'use strict';
 
-const CommitsCounter = require('progress/commits_counter.js');
-const CounterCharts = require('progress/counter_charts.js');
-const ChartsUploader = require('progress/charts_uploader.js');
-const ProgressChartsUploader = require('progress/progress_charts_uploader.js');
+const CommitsCounter = require('../progress/commits_counter.js');
+const CounterCharts = require('../progress/counter_charts.js');
+const ChartsUploader = require('../progress/charts_uploader.js');
+const ProgressChartsUploader = require('../progress/progress_charts_uploader.js');
 
-const slackToken = process.env.SLACK_API_TOKEN;
-const chartsUploader = new ChartsUploader(slackToken);
+const token = process.env.SLACK_API_TOKEN;
+const chartsUploader = new ChartsUploader(token);
 
 const conversationId = process.env.SLACK_CONVERSATION_ID;
 
@@ -24,6 +24,13 @@ const periodDays = process.env.PERIOD_DAYS || 7;
 
 const progressChartsUploader = new ProgressChartsUploader(commitsCounter, counterCharts, chartsUploader, gitlabProjectId, conversationId, periodDays);
 
-module.exports.uploadProgressCharts = (event, context, callback) => {
-    progressChartsUploader.exec(event, callback);
-};
+describe('ProgressChartsUploader', function () {
+    this.timeout(20000);
+    describe('#exec()', function () {
+        it('should run', function () {
+            return new Promise(resolve =>
+                progressChartsUploader.exec(null, resolve)
+            );
+        });
+    });
+});

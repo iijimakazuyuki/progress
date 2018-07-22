@@ -4,11 +4,16 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Kazuyuki Iijima",
   "license": "ISC",
   "dependencies": {
-    "@slack/client": "^4.3.1"
+    "@slack/client": "^4.3.1",
+    "chart.js": "^2.7.2",
+    "chartjs-node": "^1.7.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

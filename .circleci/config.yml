@@ -14,10 +14,14 @@ jobs:
         if [ -z "$AWS_ACCESS_KEY_ID" \
              -o -z "$AWS_SECRET_ACCESS_KEY" \
              -o -z "$SLACK_API_TOKEN" \
-             -o -z "$SLACK_CONVERSATION_ID" ]; then
+             -o -z "$SLACK_CONVERSATION_ID" \
+             -o -z "$GITLAB_API_TOKEN" \
+             -o -z "$GITLAB_PROJECT_ID" ]; then
           exit 0
         fi
+        set -e
         npm install
+        npm test
         npm install -g serverless@1.28.0
         serverless deploy
     - save_cache:
