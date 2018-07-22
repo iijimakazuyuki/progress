@@ -9,7 +9,7 @@ const token = process.env.SLACK_API_TOKEN;
 
 const conversationId = process.env.SLACK_CONVERSATION_ID;
 
-const FILENAME = 'testimage.png';
+const FILENAME = 'test/img/testimage.png';
 
 describe('ChartsUploader', function () {
     this.timeout(10000);
