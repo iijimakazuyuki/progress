@@ -7,7 +7,7 @@ cache:
   - node_modules/
 
 deploy:
-  image: node:10.6.0
+  image: node:8.11.3
   script:
   - npm install
   - npm test

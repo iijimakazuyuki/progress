@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy:
     docker:
-    - image: node:10.6.0
+    - image: node:8.11.3
     steps:
     - checkout
     - restore_cache:
