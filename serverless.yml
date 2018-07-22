@@ -11,7 +11,7 @@ package:
   - progress/**
 
 functions:
-  hello:
+  uploadProgressCharts:
     handler: handler.uploadProgressCharts
     events:
     - schedule: cron(0 3 * * ? *)
