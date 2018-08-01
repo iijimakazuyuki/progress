@@ -45,7 +45,7 @@ class ProgressChartsUploader {
             const response = {
                 statusCode: 200,
                 body: JSON.stringify({
-                    message: `Message sent: ${res.ts}`,
+                    message: `Created a progress chart since ${since} until ${until}.`,
                     input: event,
                 }),
             };
