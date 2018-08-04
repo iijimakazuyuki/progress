@@ -27,6 +27,7 @@ deploy:
   stage: deploy
   image: node:8.11.3
   script:
+  - npm install
   - npm install -g serverless@1.28.0
   - serverless deploy --stage $STAGE_NAME
   only:

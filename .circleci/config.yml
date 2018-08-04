@@ -47,6 +47,7 @@ jobs:
           exit 0
         fi
         set -e
+        npm install
         npm install -g serverless@1.28.0
         serverless deploy --stage $STAGE_NAME
     - save_cache:
