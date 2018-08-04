@@ -15,7 +15,7 @@ const mergeCommitData = data => data.reduce((ret, cur) => {
                 ret[authorName][key] += cur[authorName][key];
             }
         } else {
-            ret[authorName][key] = cur[authorName][key];
+            ret[authorName] = cur[authorName];
         }
     }
     return ret;
