@@ -8,7 +8,7 @@ const ProgressChartsUploader = require('../progress/progress_charts_uploader.js'
 const token = process.env.SLACK_API_TOKEN;
 const chartsUploader = new ChartsUploader(token);
 
-const conversationId = process.env.SLACK_CONVERSATION_ID;
+const conversationId = process.env.SLACK_TEST_CONVERSATION_ID;
 
 const gitlabToken = process.env.GITLAB_API_TOKEN;
 const gitlabHost = process.env.GITLAB_HOST || 'gitlab.com';

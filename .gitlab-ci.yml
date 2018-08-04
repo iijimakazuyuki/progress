@@ -6,11 +6,27 @@ cache:
   paths:
   - node_modules/
 
-deploy:
+stages:
+- test
+- deploy
+
+test:
+  stage: test
   image: node:8.11.3
   script:
   - npm install
   - npm test
+  only:
+    variables:
+    - $SLACK_API_TOKEN
+    - $SLACK_TEST_CONVERSATION_ID
+    - $GITLAB_API_TOKEN
+    - $GITLAB_PROJECT_ID
+
+deploy:
+  stage: deploy
+  image: node:8.11.3
+  script:
   - npm install -g serverless@1.28.0
   - serverless deploy --stage $STAGE_NAME
   only:

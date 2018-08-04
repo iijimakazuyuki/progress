@@ -7,7 +7,7 @@ const CounterCharts = require('../progress/counter_charts.js');
 
 const token = process.env.SLACK_API_TOKEN;
 
-const conversationId = process.env.SLACK_CONVERSATION_ID;
+const conversationId = process.env.SLACK_TEST_CONVERSATION_ID;
 
 const FILENAME = 'test/img/testimage.png';
 

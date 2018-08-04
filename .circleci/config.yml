@@ -1,5 +1,30 @@
 version: 2
 jobs:
+  test:
+    docker:
+    - image: node:8.11.3
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        - node-v2-{{ .Branch }}-
+        - node-v2-
+    - run: |
+        if [ -z "$SLACK_API_TOKEN" \
+             -o -z "$SLACK_TEST_CONVERSATION_ID" \
+             -o -z "$GITLAB_API_TOKEN" \
+             -o -z "$GITLAB_PROJECT_ID" ]; then
+          exit 0
+        fi
+        set -e
+        npm install
+        npm test
+    - save_cache:
+        paths:
+        - node_modules/
+        - /usr/local/lib/node_modules/
+        key: node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
   deploy:
     docker:
     - image: node:8.11.3
@@ -22,8 +47,6 @@ jobs:
           exit 0
         fi
         set -e
-        npm install
-        npm test
         npm install -g serverless@1.28.0
         serverless deploy --stage $STAGE_NAME
     - save_cache:
@@ -35,4 +58,5 @@ workflows:
   version: 2
   deploy:
     jobs:
+    - test
     - deploy
