@@ -8,6 +8,7 @@ const since = process.env.GITLAB_COMMITS_SINCE || '2018-04-01T00:00:00Z';
 const until = process.env.GITLAB_COMMITS_UNTIL || '2018-12-31T00:00:00Z';
 
 describe('CommitsCounter', function () {
+    this.timeout(20000);
     describe('#getCommits()', function () {
         it('should get commits', function () {
             let commitsCounter = new CommitsCounter(GITLAB_HOST, gitlabToken);
