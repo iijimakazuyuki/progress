@@ -16,7 +16,7 @@ functions:
   uploadProgressCharts:
     handler: handler.uploadProgressCharts
     events:
-    - schedule: cron(0 3 * * ? *)
+    - schedule: ${env:CRON_SCHEDULE}
     environment:
       SLACK_API_TOKEN: ${env:SLACK_API_TOKEN}
       SLACK_CONVERSATION_ID: ${env:SLACK_CONVERSATION_ID}

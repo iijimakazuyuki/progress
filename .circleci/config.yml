@@ -16,7 +16,8 @@ jobs:
              -o -z "$SLACK_API_TOKEN" \
              -o -z "$SLACK_CONVERSATION_ID" \
              -o -z "$GITLAB_API_TOKEN" \
-             -o -z "$GITLAB_PROJECT_ID" ]; then
+             -o -z "$GITLAB_PROJECT_ID" \
+             -o -z "$CRON_SCHEDULE" ]; then
           exit 0
         fi
         set -e
