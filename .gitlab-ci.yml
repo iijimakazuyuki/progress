@@ -12,7 +12,7 @@ deploy:
   - npm install
   - npm test
   - npm install -g serverless@1.28.0
-  - serverless deploy
+  - serverless deploy --stage $STAGE_NAME
   only:
     variables:
     - $AWS_ACCESS_KEY_ID
@@ -22,3 +22,4 @@ deploy:
     - $GITLAB_API_TOKEN
     - $GITLAB_PROJECT_ID
     - $CRON_SCHEDULE
+    - $STAGE_NAME

@@ -17,14 +17,15 @@ jobs:
              -o -z "$SLACK_CONVERSATION_ID" \
              -o -z "$GITLAB_API_TOKEN" \
              -o -z "$GITLAB_PROJECT_ID" \
-             -o -z "$CRON_SCHEDULE" ]; then
+             -o -z "$CRON_SCHEDULE" \
+             -o -z "$STAGE_NAME" ]; then
           exit 0
         fi
         set -e
         npm install
         npm test
         npm install -g serverless@1.28.0
-        serverless deploy
+        serverless deploy --stage $STAGE_NAME
     - save_cache:
         paths:
         - node_modules/
