@@ -25,7 +25,7 @@ const periodDays = process.env.PERIOD_DAYS || 7;
 const progressChartsUploader = new ProgressChartsUploader(commitsCounter, counterCharts, chartsUploader, gitlabProjectIds, conversationId, periodDays);
 
 describe('ProgressChartsUploader', function () {
-    this.timeout(20000);
+    this.timeout(10000 * gitlabProjectIds.length);
     describe('#exec()', function () {
         it('should run', function () {
             return new Promise(resolve =>
