@@ -16,7 +16,7 @@ describe('ChartsUploader', function () {
     describe('#upload()', function () {
         it('should upload file', function () {
             let chartsUploader = new ChartsUploader(token);
-            return chartsUploader.upload(FILENAME, fs.createReadStream(FILENAME), conversationId).catch(console.err);
+            return chartsUploader.upload(FILENAME, fs.createReadStream(FILENAME), conversationId, 'test').catch(console.err);
         });
         it('should upload file from buffer', function () {
             let data = {
@@ -26,7 +26,7 @@ describe('ChartsUploader', function () {
             let counterCharts = new CounterCharts(500, 500);
             let chartsUploader = new ChartsUploader(token);
             return counterCharts.getCounterChartsBuffer(data).then(buffer =>
-                chartsUploader.upload('chart.png', buffer, conversationId).catch(console.err)
+                chartsUploader.upload('chart.png', buffer, conversationId, 'test').catch(console.err)
             );
         });
     });

@@ -6,7 +6,11 @@ const getDateDaysAgo = (days) => {
     return ret;
 };
 const makeFilename = date =>
-    `commits_${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.png`;
+    `commits_${dateFormat(date)}.png`;
+const dateFormat = date => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+const initialComment = (since, until) =>
+    `Proogress Chart since ${dateFormat(since)} until ${dateFormat(until)}`;
 
 const mergeCommitData = data => data.reduce((ret, cur) => {
     for (let authorName in cur) {
@@ -31,16 +35,16 @@ class ProgressChartsUploader {
         this.periodDays = periodDays;
     }
     exec(event, callback) {
-        let since = getDateDaysAgo(this.periodDays).toISOString();
+        let since = getDateDaysAgo(this.periodDays);
         let today = new Date();
-        let until = today.toISOString();
+        let until = today;
         let filename = makeFilename(today);
         Promise.all(this.gitlabProjectIds.map(gitlabProjectId =>
-            this.commitsCounter.getStats(gitlabProjectId, since, until)
+            this.commitsCounter.getStats(gitlabProjectId, since.toISOString(), until.toISOString())
         )).then(data =>
             this.counterCharts.getCounterChartsBuffer(mergeCommitData(data))
         ).then(buffer =>
-            this.chartsUploader.upload(filename, buffer, this.conversationId)
+            this.chartsUploader.upload(filename, buffer, this.conversationId, initialComment(since, until))
         ).then(res => {
             const response = {
                 statusCode: 200,
