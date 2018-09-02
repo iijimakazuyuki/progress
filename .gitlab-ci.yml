@@ -13,12 +13,16 @@ test:
   script:
   - npm install
   - npm test
-  only:
+  except:
     variables:
-    - $SLACK_API_TOKEN
-    - $SLACK_TEST_CONVERSATION_ID
-    - $GITLAB_API_TOKEN
-    - $GITLAB_PROJECT_ID
+    - $SLACK_API_TOKEN == null
+    - $SLACK_API_TOKEN == ""
+    - $SLACK_TEST_CONVERSATION_ID == null
+    - $SLACK_TEST_CONVERSATION_ID == ""
+    - $GITLAB_API_TOKEN == null
+    - $GITLAB_API_TOKEN == ""
+    - $GITLAB_PROJECT_ID == null
+    - $GITLAB_PROJECT_ID == ""
 
 deploy:
   stage: deploy
@@ -27,13 +31,21 @@ deploy:
   - npm install
   - npm install -g serverless@1.28.0
   - serverless deploy --stage $STAGE_NAME
-  only:
+  except:
     variables:
-    - $AWS_ACCESS_KEY_ID
-    - $AWS_SECRET_ACCESS_KEY
-    - $SLACK_API_TOKEN
-    - $SLACK_CONVERSATION_ID
-    - $GITLAB_API_TOKEN
-    - $GITLAB_PROJECT_ID
-    - $CRON_SCHEDULE
-    - $STAGE_NAME
+    - $AWS_ACCESS_KEY_ID == null
+    - $AWS_ACCESS_KEY_ID == ""
+    - $AWS_SECRET_ACCESS_KEY == null
+    - $AWS_SECRET_ACCESS_KEY == ""
+    - $SLACK_API_TOKEN == null
+    - $SLACK_API_TOKEN == ""
+    - $SLACK_CONVERSATION_ID == null
+    - $SLACK_CONVERSATION_ID == ""
+    - $GITLAB_API_TOKEN == null
+    - $GITLAB_API_TOKEN == ""
+    - $GITLAB_PROJECT_ID == null
+    - $GITLAB_PROJECT_ID == ""
+    - $CRON_SCHEDULE == null
+    - $CRON_SCHEDULE == ""
+    - $STAGE_NAME == null
+    - $STAGE_NAME == ""
